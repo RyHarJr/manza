@@ -13,38 +13,43 @@
 
     <link href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/css/adminlte.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css"
+        rel="stylesheet" />
 
     <style>
         :root {
-            --lt-dark: #0F172A;          /* Slate 900 */
-            --lt-grey: #475569;          /* Slate 600 */
-            --lt-grey-mid: #64748B;      /* Slate 500 */
-            --lt-grey-light: #94A3B8;    /* Slate 400 */
-            --lt-grey-border: #E2E8F0;   /* Slate 200 */
-            --lt-bg: #F8F9FA;            /* Soft Gray */
+            --lt-dark: #111827;
+            --lt-grey: #334155;
+            --lt-grey-mid: #64748B;
+            --lt-grey-light: #cbd5e1;
+            --lt-grey-border: #dbe4f0;
+            --lt-bg: linear-gradient(135deg, #eff6ff 0%, #f8fafc 42%, #eefbf7 100%);
             --lt-white: #FFFFFF;
-            --lt-accent: #1E293B;        /* Slate 800 */
-            --lt-accent-dark: #0F172A;
-            --lt-accent-light: #94A3B8;
-            --lt-sidebar: #0F172A;
-            --lt-sidebar-dark: #020617;  /* Slate 950 */
+            --lt-accent: #4f46e5;
+            --lt-accent-dark: #312e81;
+            --lt-accent-light: #a5b4fc;
+            --lt-sidebar: #111827;
+            --lt-sidebar-dark: #020617;
+            --lt-highlight: #22d3ee;
+            --lt-gold: #f59e0b;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--lt-bg);
+            background: var(--lt-bg);
             color: var(--lt-grey);
         }
 
         /* ===== SIDEBAR ===== */
         .app-sidebar {
-            background: linear-gradient(180deg, var(--lt-sidebar) 0%, var(--lt-sidebar-dark) 100%) !important;
+            background:
+                linear-gradient(180deg, rgba(17, 24, 39, 0.98) 0%, rgba(15, 23, 42, 0.98) 55%, rgba(8, 47, 73, 0.98) 100%) !important;
             border-right: none !important;
-            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 18px 0 35px rgba(15, 23, 42, 0.18);
         }
 
         .sidebar-brand {
@@ -61,7 +66,7 @@
         }
 
         .sidebar-brand .brand-image {
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
         .sidebar-brand .brand-subtitle {
@@ -82,7 +87,7 @@
             opacity: 0.9;
         }
 
-        .sidebar-menu .nav-item > .nav-link {
+        .sidebar-menu .nav-item>.nav-link {
             color: rgba(255, 255, 255, 0.7) !important;
             margin: 2px 8px !important;
             border-radius: 8px !important;
@@ -92,13 +97,13 @@
             transition: all 0.25s ease !important;
         }
 
-        .sidebar-menu .nav-item > .nav-link:hover {
+        .sidebar-menu .nav-item>.nav-link:hover {
             background: rgba(255, 255, 255, 0.08) !important;
             color: #fff !important;
             transform: translateX(3px);
         }
 
-        .sidebar-menu .nav-item > .nav-link.active {
+        .sidebar-menu .nav-item>.nav-link.active {
             background: rgba(255, 255, 255, 0.15) !important;
             color: #fff !important;
             box-shadow: none !important;
@@ -106,7 +111,7 @@
             border-left: 3px solid #fff !important;
         }
 
-        .sidebar-menu .nav-item > .nav-link .nav-icon {
+        .sidebar-menu .nav-item>.nav-link .nav-icon {
             font-size: 1.1rem;
             width: 1.6rem;
             margin-right: 0.5rem;
@@ -125,11 +130,12 @@
         }
 
         .card {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
             overflow: hidden;
-            background: var(--lt-white);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
         }
 
         .card-header {
@@ -162,13 +168,25 @@
 
         /* ===== BUTTONS ===== */
         .btn-primary {
-            background: var(--lt-accent) !important;
+            background: linear-gradient(135deg, var(--lt-accent), #6366f1) !important;
             border-color: var(--lt-accent) !important;
+            box-shadow: 0 10px 18px rgba(79, 70, 229, 0.25);
         }
 
         .btn-primary:hover {
-            background: var(--lt-accent-dark) !important;
-            border-color: var(--lt-accent-dark) !important;
+            background: linear-gradient(135deg, #4338ca, #4f46e5) !important;
+            border-color: #4338ca !important;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            border-color: #10b981 !important;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+            border-color: #f59e0b !important;
+            color: #111827 !important;
         }
 
         /* ===== TABLE ===== */
@@ -204,9 +222,15 @@
         }
 
         /* ===== GLOBAL ORGANIC CLASSES (Moved from Dashboard) ===== */
-        .bg-soft-slate { background: #F1F5F9; color: #0F172A; }
-        .text-slate { color: #0F172A; }
-        
+        .bg-soft-slate {
+            background: #F1F5F9;
+            color: #0F172A;
+        }
+
+        .text-slate {
+            color: #0F172A;
+        }
+
         .avatar-circle {
             width: 45px;
             height: 45px;
@@ -218,16 +242,16 @@
             font-size: 1.2rem;
             flex-shrink: 0;
         }
-        
-        .badge-soft-slate { 
-            background: #F1F5F9; 
-            color: #0F172A; 
+
+        .badge-soft-slate {
+            background: #F1F5F9;
+            color: #0F172A;
             padding: 8px 12px;
             border-radius: 10px;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
-        
+
         .list-group-premium .list-group-item {
             border: none;
             padding: 16px 20px;
@@ -236,6 +260,7 @@
             background: transparent;
             transition: background 0.2s;
         }
+
         .list-group-premium .list-group-item:hover {
             background: #F8F9FA;
         }
@@ -280,7 +305,8 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="bi bi-check-circle-fill me-2"></i>
                             {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
                         </div>
                     @endif
 
