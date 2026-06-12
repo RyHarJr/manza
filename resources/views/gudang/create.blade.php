@@ -71,5 +71,5 @@
 @endsection
 
 @section('footer')
-    <p>RyHar</p>
+    <p>Latanza</p>
 @endsection

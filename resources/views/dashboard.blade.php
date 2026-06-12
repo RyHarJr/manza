@@ -136,7 +136,7 @@
 @endsection
 
 @section('footer')
-    <p>RyHar</p>
+    <p>Latanza</p>
 @endsection
 
 @push('scripts')
@@ -148,14 +148,15 @@
     const vibrantPalette = ['#6366f1', '#ec4899', '#14b8a6', '#f59e0b', '#8b5cf6', '#3b82f6', '#ef4444'];
 
     Highcharts.setOptions({
-        chart: { style: { fontFamily: 'inherit' } },
+        chart: { style: { fontFamily: 'inherit' }, backgroundColor: '#ffffff' },
         colors: vibrantPalette,
-        credits: { enabled: false }
+        credits: { enabled: false },
+        exporting: { enabled: false }
     });
 
     // 1. Transaksi & Revenue (Harian)
     Highcharts.chart('chartTransaksiBulan', {
-        chart: { type: 'areaspline', backgroundColor: 'transparent' },
+        chart: { type: 'areaspline', backgroundColor: '#ffffff' },
         title: { text: null },
         xAxis: {
             categories: {!! json_encode(collect($transaksiHarian)->pluck('tanggal')->toArray()) !!},
@@ -210,7 +211,7 @@
 
     // 2. Metode Pembayaran Terbanyak (Donut)
     Highcharts.chart('chartStatusPembayaran', {
-        chart: { type: 'pie', backgroundColor: 'transparent' },
+        chart: { type: 'pie', backgroundColor: '#ffffff' },
         title: { text: null },
         plotOptions: {
             pie: {
@@ -263,7 +264,7 @@
 
     // 4. Produk Paling Laris (Bar Chart)
     Highcharts.chart('chartTopProduk', {
-        chart: { type: 'bar', backgroundColor: 'transparent' },
+        chart: { type: 'bar', backgroundColor: '#ffffff' },
         title: { text: null },
         xAxis: {
             categories: {!! json_encode(collect($topProduk)->pluck('NamaProduk')->toArray()) !!},
