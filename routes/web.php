@@ -12,6 +12,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
   return view('landing');
@@ -20,22 +21,25 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
   Route::get('login', [AuthController::class, 'showLogin'])->name('login');
   Route::post('login', [AuthController::class, 'login'])->name('login.post');
-  Route::get('register', [AuthController::class, 'showRegister'])->name('register');
-  Route::post('register', [AuthController::class, 'register'])->name('register.post');
 });
 
 Route::middleware('auth')->group(function () {
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+  Route::get('kasir', [KasirController::class, 'index'])->name('kasir.index');
+  Route::post('kasir', [KasirController::class, 'store'])->name('kasir.store');
+
+  Route::resource('pemasok', PemasokController::class);
+  Route::resource('produk', ProdukController::class);
+  Route::resource('pelanggan', PelangganController::class);
+  Route::resource('karyawan', KaryawanController::class);
+  Route::resource('gudang', GudangController::class);
+  Route::resource('transaksi', TransaksiController::class);
+  Route::resource('detail-transaksi', DetailTransaksiController::class);
 });
 
-Route::get('kasir', [KasirController::class, 'index'])->name('kasir.index');
-Route::post('kasir', [KasirController::class, 'store'])->name('kasir.store');
+Route::middleware(['auth', 'superadmin'])->group(function () {
+  Route::resource('users', UserController::class)->except(['show']);
+});
 
-Route::resource('pemasok', PemasokController::class);
-Route::resource('produk', ProdukController::class);
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('karyawan', KaryawanController::class);
-Route::resource('gudang', GudangController::class);
-Route::resource('transaksi', TransaksiController::class);
-Route::resource('detail-transaksi', DetailTransaksiController::class);

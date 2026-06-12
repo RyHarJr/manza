@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <div class="card border-0 p-4">
-            <h5 class="fw-bold text-slate mb-4">Edit Detail Transaksi</h5>
+            <h5 class="fw-bold text-primary mb-4">Edit Detail Transaksi</h5>
             <form action="{{ route('detail-transaksi.update', $detailTransaksi->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -54,7 +54,7 @@
 
                 <div class="d-flex gap-2 mt-4">
                     <a href="{{ route('detail-transaksi.index') }}" class="btn btn-light px-4"><i class="bi bi-arrow-left me-1"></i> Batal</a>
-                    <button type="submit" class="btn btn-dark px-4"><i class="bi bi-save me-1"></i> Simpan Perubahan</button>
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-1"></i> Simpan Perubahan</button>
                 </div>
             </form>
         </div>

@@ -1,18 +1,14 @@
-<aside class="app-sidebar shadow" data-bs-theme="dark">
+<aside class="app-sidebar" bg-body>
 
     <div class="sidebar-brand">
-        <a href="{{ url('/') }}" class="brand-link text-decoration-none">
-            <div class="d-flex align-items-center gap-2">
+        <a href="{{ url('/') }}" class="brand-link text-decoration-none w-100">
+            <div class="d-flex align-items-center gap-3">
                 <div class="brand-logo-icon d-flex align-items-center justify-content-center"
-                    style="width:42px; height:42px; background: linear-gradient(135deg, #22d3ee 0%, #6366f1 50%, #f59e0b 100%);
-                           border-radius: 12px; box-shadow: 0 10px 18px rgba(79,70,229,0.25);">
-                    <i class="bi bi-shop" style="font-size:1.3rem; color:#fff;"></i>
+                    style="width: 32px; height: 32px; font-size: 1.4rem; color: #2563eb;">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zM250.77 151l67.5 125h-54.89l-22.13-43.51H173.34l-21.61 43.51H95l69.19-125h86.58zM186.29 203.22L206.57 245h-42.66l22.38-41.78z"></path></svg>
                 </div>
                 <div>
-                    <span class="brand-text fw-bold" style="color:#FFFFFF; font-size:1.1rem;">La Tanza</span>
-                    <br>
-                    <span class="brand-subtitle" style="font-size:0.65rem; color:#9E9E9E; letter-spacing:1.5px;">TOKO &
-                        DISTRIBUSI</span>
+                    <span class="brand-text">AdminJS <span style="font-weight: 300;">Manza</span></span>
                 </div>
             </div>
         </a>
@@ -94,7 +90,28 @@
                 </a>
             </li>
 
+            @if (auth()->check() && auth()->user()->role === 'superadmin')
+            <li class="nav-header">Superadmin</li>
+
+            <li class="nav-item">
+                <a href="{{ route('users.index') }}"
+                    class="nav-link {{ request()->is('users*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-shield-lock"></i>
+                    <p>Kelola User</p>
+                </a>
+            </li>
+            @endif
+
         </ul>
     </nav>
+
+    <div class="p-3" style="flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.06);">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-outline-light btn-sm w-100 d-flex align-items-center justify-content-center gap-2" style="border-radius: 8px; font-weight: 500; opacity: 0.7; border-color: rgba(255,255,255,0.15);">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+        </form>
+    </div>
 
 </aside>

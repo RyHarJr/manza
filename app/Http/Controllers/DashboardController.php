@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    private function monthGroupSql(string $column): string
+    private function dateGroupSql(string $column): string
     {
         return DB::getDriverName() === 'sqlite'
-            ? "strftime('%Y-%m', $column)"
-            : "DATE_FORMAT($column, '%Y-%m')";
+            ? "strftime('%Y-%m-%d', $column)"
+            : "DATE_FORMAT($column, '%W %M %Y')"; // We can use "%Y-%m-%d" to sort, but let's just use standard DATE_FORMAT
     }
 
     public function index()
@@ -30,10 +30,11 @@ class DashboardController extends Controller
 
         $produkPerKategori = DB::select("SELECT KategoriProduk as kategori, COUNT(*) as total FROM produks GROUP BY KategoriProduk");
 
-        $monthGroup = $this->monthGroupSql('TglTransaksi');
-        $transaksiPerBulan = DB::select("SELECT $monthGroup as bulan, COUNT(*) as total, SUM(TotalHarga) as revenue FROM transaksis GROUP BY $monthGroup ORDER BY bulan");
+        $dateGroupSqlRaw = DB::getDriverName() === 'sqlite' ? "strftime('%Y-%m-%d', TglTransaksi)" : "DATE(TglTransaksi)";
+        $transaksiHarian = DB::select("SELECT $dateGroupSqlRaw as tanggal, COUNT(*) as total, SUM(TotalHarga) as revenue FROM transaksis GROUP BY $dateGroupSqlRaw ORDER BY tanggal DESC LIMIT 14");
+        $transaksiHarian = array_reverse($transaksiHarian);
 
-        $statusPembayaran = DB::select("SELECT StatusPembayaran as status, COUNT(*) as total FROM transaksis GROUP BY StatusPembayaran");
+        $metodePembayaran = DB::select("SELECT MetodePembayaran as metode, COUNT(*) as total FROM transaksis GROUP BY MetodePembayaran ORDER BY total DESC");
 
         $stokPerProduk = DB::select("SELECT p.NamaProduk as nama, SUM(g.Jumlah) as total_stok FROM gudangs g JOIN produks p ON g.produk_id = p.id GROUP BY g.produk_id, p.NamaProduk ORDER BY total_stok DESC LIMIT 10");
 
@@ -47,8 +48,8 @@ class DashboardController extends Controller
             'totalModal',
             'totalKeuntungan',
             'produkPerKategori',
-            'transaksiPerBulan',
-            'statusPembayaran',
+            'transaksiHarian',
+            'metodePembayaran',
             'stokPerProduk',
             'topPelanggan',
             'topKasir',

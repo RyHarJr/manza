@@ -94,17 +94,20 @@
         border-radius: 0 0 12px 12px;
     }
     .btn-pay {
-        background: #1a1a1a;
+        background: var(--lt-primary);
         color: #fff;
         border-radius: 8px;
         padding: 12px;
         font-weight: 600;
         font-size: 1.1rem;
-        transition: background 0.2s;
+        transition: background 0.2s, box-shadow 0.2s;
+        border: none;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
     }
     .btn-pay:hover {
-        background: #333;
+        background: var(--lt-primary-dark);
         color: #fff;
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
     }
 </style>
 
@@ -149,7 +152,7 @@
 
     <div class="col-lg-4">
         <div class="pos-cart-panel sticky-top" style="top:20px;">
-            <div class="p-3 border-bottom d-flex align-items-center justify-content-between" style="background: #1a1a1a; color:#fff; border-radius: 12px 12px 0 0;">
+            <div class="p-3 border-bottom d-flex align-items-center justify-content-between" style="background: #f8f9fa; color:#4b5563; border-radius: 12px 12px 0 0;">
                 <h5 class="mb-0 fw-bold"><i class="bi bi-cart3 me-2"></i>Keranjang</h5>
                 <span class="badge bg-light text-dark rounded-pill" id="cartCount">0 Item</span>
             </div>
@@ -334,7 +337,7 @@ $(document).ready(function() {
                    </div>`,
             icon: 'info',
             showCancelButton: true,
-            confirmButtonColor: '#1a1a1a',
+            confirmButtonColor: '#3b82f6',
             cancelButtonColor: '#e0e0e0',
             confirmButtonText: 'Proses Transaksi',
             cancelButtonText: '<span class="text-dark">Batal</span>',

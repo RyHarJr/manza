@@ -10,55 +10,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --bg: #07111f;
-            --panel: #111827;
-            --line: rgba(148, 163, 184, .18);
-            --muted: #dbe5f0;
-        }
-
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 18%),
-                linear-gradient(160deg, #020617 0%, #111827 45%, #172554 100%);
-            color: #fff;
+            background: #f8f9fa;
+            color: #1f2937;
             min-height: 100vh;
         }
 
         .glass {
-            background: linear-gradient(160deg, rgba(15, 23, 42, .96), rgba(30, 41, 59, .92));
-            border: 1px solid var(--line);
-            border-radius: 28px;
-            box-shadow: 0 18px 50px rgba(15, 23, 42, .45);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .small-note {
-            color: var(--muted);
+            color: #6b7280;
             font-size: .95rem;
         }
 
         .form-control,
         .form-select {
-            background: rgba(15, 23, 42, .75);
-            color: #fff;
-            border: 1px solid rgba(148, 163, 184, .22);
-            border-radius: 14px;
+            background: #ffffff;
+            color: #1f2937;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
         }
 
         .form-control::placeholder {
-            color: #cbd5e1;
+            color: #9ca3af;
         }
 
         .form-control:focus {
-            background: rgba(15, 23, 42, .88);
-            color: #fff;
-            box-shadow: 0 0 0 .2rem rgba(148, 163, 184, .18);
-            border-color: rgba(148, 163, 184, .35);
+            background: #ffffff;
+            color: #1f2937;
+            box-shadow: 0 0 0 .2rem rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
         }
 
         .btn-submit {
-            border-radius: 14px;
+            border-radius: 8px;
             padding: .85rem 1rem;
             font-weight: 700;
         }
@@ -71,19 +62,19 @@
             <div class="col-lg-5 col-md-7">
                 <div class="glass p-4 p-md-5">
                     <a href="{{ url('/') }}"
-                        class="text-decoration-none text-white d-flex align-items-center gap-2 mb-4">
+                        class="text-decoration-none text-dark d-flex align-items-center gap-2 mb-4">
                         <span
-                            class="d-inline-flex align-items-center justify-content-center rounded-3 bg-light text-dark"
+                            class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary text-white"
                             style="width:42px;height:42px;"><i class="bi bi-shop"></i></span>
                         <div>
-                            <div class="fw-bold">La Tanza</div>
+                            <div class="fw-bold">AdminJS Manza</div>
                             <small class="small-note">Sistem POS & Toko Modern</small>
                         </div>
                     </a>
                     <span class="badge rounded-pill px-3 py-2 mb-3"
-                        style="background:rgba(56,189,248,0.12); color:#e0f2fe; border:1px solid rgba(56,189,248,0.25);">Akses
+                        style="background:rgba(59, 130, 246, 0.1); color:#2563eb; border:1px solid rgba(59, 130, 246, 0.2);">Akses
                         dashboard & POS</span>
-                    <h2 class="fw-bold text-white mb-1">Selamat datang</h2>
+                    <h2 class="fw-bold text-dark mb-1">Selamat datang</h2>
                     <p class="small-note mb-4">Masuk untuk mengakses dashboard dan fitur toko Anda.</p>
 
                     <form method="POST" action="{{ route('login.post') }}">
@@ -100,18 +91,16 @@
                             <label class="form-label small-note">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="••••••••" required>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-4 small-note">
+                        <div class="d-flex justify-content-between align-items-center mb-4 small-note text-muted">
                             <label class="form-check-label"><input type="checkbox" name="remember" value="1"
                                     class="form-check-input me-2"> Ingat
                                 saya</label>
-                            <a href="#" class="text-decoration-none text-white-50">Lupa password?</a>
+                            <a href="#" class="text-decoration-none text-primary">Lupa password?</a>
                         </div>
-                        <button type="submit" class="btn btn-light w-100 btn-submit"
-                            style="background:linear-gradient(135deg,#38bdf8,#6366f1); color:#fff; border:none;">Masuk</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-submit"
+                            style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">Masuk</button>
                     </form>
 
-                    <p class="small-note mt-4 mb-0 text-center">Belum punya akun? <a href="{{ route('register') }}"
-                            class="text-white text-decoration-none fw-semibold">Daftar di sini</a></p>
                 </div>
             </div>
         </div>

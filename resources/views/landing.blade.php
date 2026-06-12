@@ -11,35 +11,33 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg: #07111f;
-            --panel: #111827;
-            --card: #172033;
-            --muted: #dbe5f0;
-            --line: rgba(148, 163, 184, 0.18);
-            --accent: #f8fbff;
-            --accent-2: #38bdf8;
+            --bg: #f8f9fa;
+            --panel: #ffffff;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --accent: #111827;
+            --accent-2: #3b82f6;
+            --glow: rgba(59, 130, 246, 0.15);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 18%),
-                radial-gradient(circle at right top, rgba(129, 140, 248, 0.14), transparent 20%),
-                linear-gradient(145deg, #020617 0%, #111827 45%, #172554 100%);
+            background: var(--bg);
             color: var(--accent);
         }
 
         .nav-glass {
-            background: rgba(15, 23, 42, 0.78);
-            border: 1px solid var(--line);
-            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(16px);
         }
 
         .hero-card {
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.92));
+            background: #ffffff;
             border: 1px solid var(--line);
             border-radius: 28px;
-            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.45);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
             overflow: hidden;
         }
 
@@ -49,8 +47,8 @@
             min-height: 320px;
             object-fit: cover;
             border-radius: 24px;
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
 
         .hero-badge {
@@ -59,9 +57,9 @@
             gap: 0.45rem;
             padding: 0.45rem 0.75rem;
             border-radius: 999px;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            color: #e0f2fe;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #2563eb;
             font-size: 0.9rem;
             font-weight: 600;
         }
@@ -77,35 +75,40 @@
             gap: 0.4rem;
             border-radius: 999px;
             padding: 0.35rem 0.65rem;
-            background: rgba(148, 163, 184, 0.1);
-            color: #dbe5f0;
+            background: rgba(59, 130, 246, 0.05);
+            color: #4b5563;
             font-size: 0.85rem;
         }
 
         .feature-card,
         .mini-card {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.92));
+            background: #ffffff;
             border: 1px solid var(--line);
             border-radius: 22px;
-            transition: transform 0.18s ease, border-color 0.18s ease;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
         }
 
         .feature-card:hover,
         .mini-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(148, 163, 184, 0.35);
+            transform: translateY(-6px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.08);
         }
 
         .badge-soft {
-            background: rgba(148, 163, 184, 0.12);
-            color: #e2e8f0;
-            border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .btn-cta {
             border-radius: 999px;
             padding: 0.85rem 1.15rem;
             font-weight: 600;
+            background: #3b82f6 !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
         }
 
         .text-muted-soft {
@@ -116,7 +119,22 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             font-size: 0.82rem;
-            color: #bfdbfe;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .text-white {
+            color: #111827 !important;
+        }
+        
+        .btn-outline-light {
+            border-color: #cbd5e1;
+            color: #4b5563;
+        }
+        
+        .btn-outline-light:hover {
+            background: #f1f5f9;
+            color: #0f172a;
         }
     </style>
 </head>
@@ -133,7 +151,6 @@
             </a>
             <div class="ms-auto d-flex flex-wrap gap-2">
                 <a class="btn btn-outline-light btn-sm" href="{{ route('login') }}">Login</a>
-                <a class="btn btn-light btn-sm" href="{{ route('register') }}">Register</a>
                 <a class="btn btn-outline-light btn-sm" href="{{ route('dashboard') }}">Dashboard</a>
             </div>
         </div>
@@ -150,16 +167,13 @@
                         transaksi, pelanggan, karyawan, dan laporan penjualan dari satu dashboard yang jelas dan modern.
                     </p>
                     <div class="d-flex flex-wrap gap-2 mb-4">
-                        <span class="info-chip"><i class="bi bi-check2-circle"></i> Dashboard real-time</span>
-                        <span class="info-chip"><i class="bi bi-check2-circle"></i> Kelola stok & pelanggan</span>
-                        <span class="info-chip"><i class="bi bi-check2-circle"></i> Laporan penjualan</span>
+                        <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Dashboard real-time</span>
+                        <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Kelola stok & pelanggan</span>
+                        <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Laporan penjualan</span>
                     </div>
                     <div class="d-flex flex-wrap gap-3">
-                        <a class="btn btn-light btn-cta"
-                            style="background:linear-gradient(135deg,#38bdf8,#6366f1); color:#fff; border:none;"
+                        <a class="btn btn-cta"
                             href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right me-2"></i>Login Sekarang</a>
-                        <a class="btn btn-outline-light btn-cta" href="{{ route('register') }}"><i
-                                class="bi bi-person-plus me-2"></i>Buat Akun</a>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -198,7 +212,7 @@
             <div class="row g-4">
                 <div class="col-md-6 col-xl-3">
                     <article class="feature-card p-4 h-100">
-                        <i class="bi bi-speedometer2 fs-3 text-white mb-3"></i>
+                        <i class="bi bi-speedometer2 fs-3 text-primary mb-3"></i>
                         <h5 class="text-white mb-2">Dashboard Ringkas</h5>
                         <p class="text-muted-soft mb-0">Pantau transaksi, keuntungan, dan performa toko dalam satu
                             tampilan yang informatif.</p>
@@ -206,7 +220,7 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <article class="feature-card p-4 h-100">
-                        <i class="bi bi-calculator fs-3 text-white mb-3"></i>
+                        <i class="bi bi-calculator fs-3 text-primary mb-3"></i>
                         <h5 class="text-white mb-2">Modul Kasir</h5>
                         <p class="text-muted-soft mb-0">Proses penjualan lebih cepat dengan antarmuka yang sederhana dan
                             fokus pada aktivitas sehari-hari.</p>
@@ -214,7 +228,7 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <article class="feature-card p-4 h-100">
-                        <i class="bi bi-box-seam fs-3 text-white mb-3"></i>
+                        <i class="bi bi-box-seam fs-3 text-primary mb-3"></i>
                         <h5 class="text-white mb-2">Manajemen Produk</h5>
                         <p class="text-muted-soft mb-0">Atur daftar produk, harga, stok, dan kategori dengan lebih
                             terstruktur.</p>
@@ -222,7 +236,7 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <article class="feature-card p-4 h-100">
-                        <i class="bi bi-receipt fs-3 text-white mb-3"></i>
+                        <i class="bi bi-receipt fs-3 text-primary mb-3"></i>
                         <h5 class="text-white mb-2">Laporan Transaksi</h5>
                         <p class="text-muted-soft mb-0">Buat laporan penjualan dan detail transaksi untuk mendukung
                             keputusan bisnis Anda.</p>
@@ -253,7 +267,7 @@
         <section class="mt-5 row g-4">
             <div class="col-md-4">
                 <article class="feature-card p-4 h-100">
-                    <i class="bi bi-graph-up-arrow fs-3 text-white mb-3"></i>
+                    <i class="bi bi-graph-up-arrow fs-3 text-primary mb-3"></i>
                     <h5 class="text-white mb-2">Pantau performa toko</h5>
                     <p class="text-muted-soft mb-0">Lihat tren penjualan, keuntungan, dan aktivitas harian dengan
                         tampilan yang mudah dibaca.</p>
@@ -261,7 +275,7 @@
             </div>
             <div class="col-md-4">
                 <article class="feature-card p-4 h-100">
-                    <i class="bi bi-basket2 fs-3 text-white mb-3"></i>
+                    <i class="bi bi-basket2 fs-3 text-primary mb-3"></i>
                     <h5 class="text-white mb-2">Atur inventaris lebih rapi</h5>
                     <p class="text-muted-soft mb-0">Stok, kategori, dan produk bisa dikelola secara sistematis tanpa
                         bingung.</p>
@@ -269,7 +283,7 @@
             </div>
             <div class="col-md-4">
                 <article class="feature-card p-4 h-100">
-                    <i class="bi bi-shield-check fs-3 text-white mb-3"></i>
+                    <i class="bi bi-shield-check fs-3 text-primary mb-3"></i>
                     <h5 class="text-white mb-2">Profesional dan aman</h5>
                     <p class="text-muted-soft mb-0">Antarmuka yang bersih, konsisten, dan siap digunakan untuk bisnis
                         retail modern.</p>

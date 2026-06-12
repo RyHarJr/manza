@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <div class="card border-0 p-4">
-            <h5 class="fw-bold text-slate mb-4">Tambah Data Produk</h5>
+            <h5 class="fw-bold text-primary mb-4">Tambah Data Produk</h5>
             <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
@@ -85,7 +85,7 @@
 
                 <div class="d-flex gap-2 mt-4">
                     <a href="{{ route('produk.index') }}" class="btn btn-light px-4"><i class="bi bi-arrow-left me-1"></i> Batal</a>
-                    <button type="submit" class="btn btn-dark px-4"><i class="bi bi-save me-1"></i> Simpan</button>
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-save me-1"></i> Simpan</button>
                 </div>
             </form>
         </div>
