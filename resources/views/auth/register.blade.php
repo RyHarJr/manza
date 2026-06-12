@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdminJS Manza | Register</title>
+    <title>Admin Manza | Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
@@ -66,7 +66,7 @@
                             class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary text-white"
                             style="width:42px;height:42px;"><i class="bi bi-shop"></i></span>
                         <div>
-                            <div class="fw-bold">AdminJS Manza</div>
+                            <div class="fw-bold">Admin Manza</div>
                             <small class="small-note">Buat akun baru</small>
                         </div>
                     </a>

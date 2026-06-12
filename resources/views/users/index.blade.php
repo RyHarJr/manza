@@ -7,7 +7,7 @@
 @section('content')
 <div class="card border-0 p-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="mb-0 fw-bold text-primary">Daftar User</h5>
+        
         <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i> Tambah User</a>
     </div>
     <div class="table-responsive">

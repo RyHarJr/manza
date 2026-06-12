@@ -11,8 +11,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/css/adminlte.min.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
@@ -21,7 +19,7 @@
         rel="stylesheet" />
 
     <style>
-        /* ===== CSS VARIABLES (AdminJS Light Mode) ===== */
+        /* ===== CSS VARIABLES (Admin Light Mode) ===== */
         :root {
             /* Colors */
             --lt-primary: #3b82f6; /* crisp blue */
@@ -47,17 +45,57 @@
             color: var(--lt-accent-dark);
         }
 
-        /* ===== SIDEBAR ===== */
-        .app-sidebar {
-            background: var(--lt-white) !important;
-            border-right: 1px solid var(--lt-grey-border) !important;
-            box-shadow: none !important;
-            display: flex !important;
-            flex-direction: column !important;
-            overflow: hidden !important;
+        /* ===== SIDEBAR & WRAPPER ===== */
+        #wrapper {
+            display: flex;
+            width: 100%;
         }
 
-        .app-sidebar nav {
+        #sidebar-wrapper {
+            width: 260px;
+            background: var(--lt-sidebar);
+            border-right: 1px solid var(--lt-grey-border);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1040;
+            overflow: hidden;
+        }
+
+        #page-content-wrapper {
+            flex-grow: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--lt-grey-bg);
+        }
+
+        @media (max-width: 991.98px) {
+            #sidebar-wrapper {
+                margin-left: -260px;
+                position: fixed;
+            }
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: 0;
+            }
+            /* Optional overlay for mobile */
+            #wrapper.toggled::before {
+                content: '';
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0,0,0,0.4);
+                z-index: 1030;
+                backdrop-filter: blur(2px);
+            }
+        }
+
+        #sidebar-wrapper nav {
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
@@ -65,13 +103,13 @@
             scrollbar-color: #cbd5e1 transparent;
         }
 
-        .app-sidebar nav::-webkit-scrollbar {
+        #sidebar-wrapper nav::-webkit-scrollbar {
             width: 4px;
         }
-        .app-sidebar nav::-webkit-scrollbar-track {
+        #sidebar-wrapper nav::-webkit-scrollbar-track {
             background: transparent;
         }
-        .app-sidebar nav::-webkit-scrollbar-thumb {
+        #sidebar-wrapper nav::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
         }
@@ -118,6 +156,7 @@
             transition: all 0.2s ease !important;
             display: flex;
             align-items: center;
+            justify-content: flex-start;
         }
 
         .sidebar-menu .nav-item>.nav-link:hover {
@@ -150,11 +189,7 @@
         .app-header {
             background: #ffffff !important;
             border-bottom: 1px solid var(--lt-grey-border) !important;
-        }
-
-        /* ===== CONTENT AREA ===== */
-        .app-main {
-            background-color: var(--lt-grey-bg);
+            z-index: 1020;
         }
 
         .card {
@@ -353,69 +388,54 @@
     </style>
 </head>
 
-<body class="layout-fixed sidebar-expand-lg">
-    <div class="app-wrapper">
-
-        <nav class="app-header navbar navbar-expand bg-body">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                            <i class="bi bi-list"></i>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-person-circle"></i> Admin
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+<body class="layout-custom">
+    <div id="wrapper">
 
         @include('components.sidebar')
 
-        <main class="app-main">
-            <div class="app-content-header">
+        <main id="page-content-wrapper">
+            <nav class="app-header navbar navbar-expand-lg border-bottom px-4 py-3 sticky-top">
                 <div class="container-fluid">
-
+                    <button class="btn btn-light d-lg-none border text-primary" id="sidebarToggle">
+                        <i class="bi bi-list fs-5"></i>
+                    </button>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold text-dark" href="#">
+                                <i class="bi bi-person-circle text-primary fs-5 align-middle me-1"></i> Admin
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+            </nav>
 
-            <div class="app-content">
-                <div class="container-fluid">
+            <div class="container-fluid px-3 px-lg-5 py-4 py-lg-5">
 
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="bi bi-check-circle-fill me-2"></i>
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    @endif
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm rounded-3" role="alert">
+                        <i class="bi bi-check-circle-fill me-2 text-success fs-5 align-middle"></i>
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                @endif
 
-                    <div class="card">
-                        <div class="card-header">
-                            @yield('title')
-                        </div>
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
-                        <div class="card-footer">
-                            @yield('footer')
-                        </div>
+                <div class="card">
+                    <div class="card-header border-0 pt-4 pb-0 px-4">
+                        @yield('title')
+                    </div>
+                    <div class="card-body px-4 py-4">
+                        @yield('content')
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-4 px-4 text-muted small">
+                        @yield('footer')
                     </div>
                 </div>
             </div>
         </main>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/js/adminlte.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -425,6 +445,22 @@
 
     <script>
         $(document).ready(function() {
+            // Setup Sidebar Toggle
+            $("#sidebarToggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+
+            // Handle Overlay Click
+            $(document).on('click', function(e) {
+                if ($(window).width() < 992) {
+                    if (!$(e.target).closest('#sidebar-wrapper').length && !$(e.target).closest('#sidebarToggle').length && $('#wrapper').hasClass('toggled')) {
+                        $('#wrapper').removeClass('toggled');
+                    }
+                }
+            });
+
+            // SweetAlert Confirm
             $('.show_confirm').click(function(event) {
                 var form = $(this).closest("form");
                 var nama = $(this).data("nama");

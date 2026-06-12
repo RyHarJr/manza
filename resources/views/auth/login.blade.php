@@ -67,7 +67,7 @@
                             class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary text-white"
                             style="width:42px;height:42px;"><i class="bi bi-shop"></i></span>
                         <div>
-                            <div class="fw-bold">AdminJS Manza</div>
+                            <div class="fw-bold">Admin Manza</div>
                             <small class="small-note">Sistem POS & Toko Modern</small>
                         </div>
                     </a>

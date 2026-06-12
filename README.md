@@ -1,4 +1,4 @@
-# 📘 Dokumentasi Aplikasi Web — AdminJS Manza
+# 📘 Dokumentasi Aplikasi Web — Admin Manza
 
 > **Sistem Point of Sale (POS) & Manajemen Toko Modern**
 > Dibangun dengan Laravel, Bootstrap 5, AdminLTE 4, dan Highcharts.
@@ -21,7 +21,7 @@
 
 ## 🏪 Tentang Aplikasi
 
-**AdminJS Manza** adalah aplikasi web berbasis Point of Sale (POS) untuk mengelola operasional toko retail. Aplikasi ini mencakup:
+**Admin Manza** adalah aplikasi web berbasis Point of Sale (POS) untuk mengelola operasional toko retail. Aplikasi ini mencakup:
 
 - Dashboard analitik dengan grafik interaktif (Highcharts)
 - Modul Kasir (Point of Sale) untuk proses transaksi cepat
@@ -357,7 +357,7 @@ users (standalone, role-based auth)
 
 ## 🎨 Desain UI / Tema
 
-### AdminJS Light Theme
+### Admin Light Theme
 Aplikasi menggunakan tema terang (light theme) yang bersih dan profesional:
 
 | Elemen                | Warna / Style                            |
