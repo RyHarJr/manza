@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
+        // 0. User (Admin)
+        User::create([
+            'name' => 'Admin Manza',
+            'email' => 'admin@manza.com',
+            'password' => bcrypt('password'),
+        ]);
+
         // 1. Pemasok
         $pemasokData = [
             ['NamaPemasok' => 'PT Indofood CBP Sukses Makmur', 'Alamat' => 'Jl. Jend. Sudirman Kav 76-78, Jakarta', 'NoTlp' => '081112223301', 'KontakPerson' => 'Bapak Budi'],

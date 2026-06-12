@@ -257,7 +257,8 @@
             background: #ffffff;
             border-radius: 12px;
             border: none;
-            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             margin-bottom: 0;
         }
 
@@ -265,6 +266,7 @@
             margin-bottom: 0;
             border-collapse: separate;
             border-spacing: 0;
+            white-space: nowrap;
         }
 
         .table thead th {
