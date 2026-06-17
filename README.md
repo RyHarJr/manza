@@ -1,7 +1,7 @@
 # 📘 Dokumentasi Aplikasi Web — Admin Manza
 
 > **Sistem Point of Sale (POS) & Manajemen Toko Modern**
-> Dibangun dengan Laravel, Bootstrap 5, AdminLTE 4, dan Highcharts.
+> Dibangun dengan Laravel, Bootstrap 5, Custom CSS, dan Highcharts.
 
 ---
 
@@ -34,22 +34,23 @@
 
 ## 🛠 Teknologi yang Digunakan
 
-| Komponen        | Teknologi                         |
-|-----------------|-----------------------------------|
-| **Backend**     | PHP 8.5, Laravel 13               |
-| **Frontend**    | Bootstrap 5.3, AdminLTE 4 Beta 3  |
-| **Database**    | MySQL / SQLite                    |
-| **Grafik**      | Highcharts JS                     |
-| **Ikon**        | Bootstrap Icons 1.11              |
-| **Font**        | Plus Jakarta Sans (Google Fonts)  |
-| **Select**      | Select2 (Bootstrap 5 Theme)       |
-| **Alert**       | SweetAlert2                        |
+| Komponen     | Teknologi                         |
+| ------------ | --------------------------------- |
+| **Backend**  | PHP ^8.3, Laravel ^13.8           |
+| **Frontend** | Bootstrap 5.3, Custom Admin Theme |
+| **Database** | MySQL / SQLite                    |
+| **Grafik**   | Highcharts JS                     |
+| **Ikon**     | Bootstrap Icons 1.11              |
+| **Font**     | Plus Jakarta Sans (Google Fonts)  |
+| **Select**   | Select2 (Bootstrap 5 Theme)       |
+| **Alert**    | SweetAlert2                       |
 
 ---
 
 ## ⚙ Instalasi & Konfigurasi
 
 ### Prasyarat
+
 - PHP >= 8.2
 - Composer
 - Node.js & NPM (opsional, untuk asset)
@@ -150,89 +151,97 @@ manza/
 ## 🗄 Skema Database (ERD)
 
 ### Tabel `users`
-| Kolom       | Tipe         | Keterangan          |
-|-------------|--------------|---------------------|
-| id          | bigint (PK)  | Auto increment      |
-| name        | varchar      | Nama pengguna       |
-| email       | varchar      | Email (unik)        |
-| password    | varchar      | Password (hash)     |
-| role        | string       | `superadmin` / `admin` |
-| timestamps  | datetime     | created_at, updated_at |
+
+| Kolom      | Tipe        | Keterangan             |
+| ---------- | ----------- | ---------------------- |
+| id         | bigint (PK) | Auto increment         |
+| name       | varchar     | Nama pengguna          |
+| email      | varchar     | Email (unik)           |
+| password   | varchar     | Password (hash)        |
+| role       | string      | `superadmin` / `admin` |
+| timestamps | datetime    | created_at, updated_at |
 
 ### Tabel `produks`
-| Kolom          | Tipe            | Keterangan       |
-|----------------|-----------------|------------------|
-| id             | bigint (PK)     | Auto increment   |
-| KategoriProduk | varchar(20)     | Kategori produk  |
-| NamaProduk     | varchar(100)    | Nama produk      |
-| Deskripsi      | varchar(255)    | Deskripsi produk |
-| Harga          | decimal(10,2)   | Harga jual       |
-| Satuan         | varchar(10)     | Pcs, Kg, Liter, dll |
-| Foto           | varchar         | Path foto (nullable) |
-| timestamps     | datetime        |                  |
+
+| Kolom          | Tipe          | Keterangan           |
+| -------------- | ------------- | -------------------- |
+| id             | bigint (PK)   | Auto increment       |
+| KategoriProduk | varchar(20)   | Kategori produk      |
+| NamaProduk     | varchar(100)  | Nama produk          |
+| Deskripsi      | varchar(255)  | Deskripsi produk     |
+| Harga          | decimal(10,2) | Harga jual           |
+| Satuan         | varchar(10)   | Pcs, Kg, Liter, dll  |
+| Foto           | varchar       | Path foto (nullable) |
+| timestamps     | datetime      |                      |
 
 ### Tabel `pemasoks`
-| Kolom        | Tipe           | Keterangan        |
-|--------------|----------------|-------------------|
-| id           | bigint (PK)    | Auto increment    |
-| NamaPemasok  | varchar(100)   | Nama pemasok      |
-| Alamat       | varchar(255)   | Alamat pemasok    |
-| NoTlp        | varchar(14)    | Nomor telepon     |
-| KontakPerson | varchar(50)    | Nama kontak       |
-| timestamps   | datetime       |                   |
+
+| Kolom        | Tipe         | Keterangan     |
+| ------------ | ------------ | -------------- |
+| id           | bigint (PK)  | Auto increment |
+| NamaPemasok  | varchar(100) | Nama pemasok   |
+| Alamat       | varchar(255) | Alamat pemasok |
+| NoTlp        | varchar(14)  | Nomor telepon  |
+| KontakPerson | varchar(50)  | Nama kontak    |
+| timestamps   | datetime     |                |
 
 ### Tabel `pelanggans`
-| Kolom          | Tipe           | Keterangan        |
-|----------------|----------------|-------------------|
-| id             | bigint (PK)    | Auto increment    |
-| NamaPelanggan  | varchar(100)   | Nama pelanggan    |
-| Alamat         | varchar(255)   | Alamat pelanggan  |
-| NoTlp          | varchar(14)    | Nomor telepon     |
-| TglDaftar      | date           | Tanggal daftar    |
-| timestamps     | datetime       |                   |
+
+| Kolom         | Tipe         | Keterangan       |
+| ------------- | ------------ | ---------------- |
+| id            | bigint (PK)  | Auto increment   |
+| NamaPelanggan | varchar(100) | Nama pelanggan   |
+| Alamat        | varchar(255) | Alamat pelanggan |
+| NoTlp         | varchar(14)  | Nomor telepon    |
+| TglDaftar     | date         | Tanggal daftar   |
+| timestamps    | datetime     |                  |
 
 ### Tabel `karyawans`
-| Kolom         | Tipe           | Keterangan       |
-|---------------|----------------|------------------|
-| id            | bigint (PK)    | Auto increment   |
-| NamaKaryawan  | varchar(100)   | Nama karyawan    |
-| Jabatan       | varchar(50)    | Jabatan          |
-| NoTlp         | varchar(14)    | Nomor telepon    |
-| TglMasuk      | date           | Tanggal masuk    |
-| timestamps    | datetime       |                  |
+
+| Kolom        | Tipe         | Keterangan     |
+| ------------ | ------------ | -------------- |
+| id           | bigint (PK)  | Auto increment |
+| NamaKaryawan | varchar(100) | Nama karyawan  |
+| Jabatan      | varchar(50)  | Jabatan        |
+| NoTlp        | varchar(14)  | Nomor telepon  |
+| TglMasuk     | date         | Tanggal masuk  |
+| timestamps   | datetime     |                |
 
 ### Tabel `gudangs`
-| Kolom      | Tipe           | Keterangan                          |
-|------------|----------------|-------------------------------------|
-| id         | bigint (PK)    | Auto increment                      |
-| pemasok_id | bigint (FK)    | → pemasoks.id (CASCADE)             |
-| produk_id  | bigint (FK)    | → produks.id (CASCADE)              |
-| Jumlah     | integer        | Jumlah stok masuk                   |
-| Harga      | decimal(10,2)  | Harga beli per unit                 |
-| timestamps | datetime       |                                     |
+
+| Kolom      | Tipe          | Keterangan              |
+| ---------- | ------------- | ----------------------- |
+| id         | bigint (PK)   | Auto increment          |
+| pemasok_id | bigint (FK)   | → pemasoks.id (CASCADE) |
+| produk_id  | bigint (FK)   | → produks.id (CASCADE)  |
+| Jumlah     | integer       | Jumlah stok masuk       |
+| Harga      | decimal(10,2) | Harga beli per unit     |
+| timestamps | datetime      |                         |
 
 ### Tabel `transaksis`
-| Kolom              | Tipe           | Keterangan                          |
-|--------------------|----------------|-------------------------------------|
-| id                 | bigint (PK)    | Auto increment                      |
-| karyawan_id        | bigint (FK)    | → karyawans.id (CASCADE)            |
-| pelanggan_id       | bigint (FK)    | → pelanggans.id (nullable, CASCADE) |
-| TglTransaksi       | date           | Tanggal transaksi                   |
-| TotalHarga         | decimal(10,2)  | Total harga transaksi               |
-| MetodePembayaran   | varchar(10)    | Cash, Transfer, QRIS, Debit         |
-| StatusPembayaran   | enum           | sukses, proses, gagal               |
-| timestamps         | datetime       |                                     |
+
+| Kolom            | Tipe          | Keterangan                          |
+| ---------------- | ------------- | ----------------------------------- |
+| id               | bigint (PK)   | Auto increment                      |
+| karyawan_id      | bigint (FK)   | → karyawans.id (CASCADE)            |
+| pelanggan_id     | bigint (FK)   | → pelanggans.id (nullable, CASCADE) |
+| TglTransaksi     | date          | Tanggal transaksi                   |
+| TotalHarga       | decimal(10,2) | Total harga transaksi               |
+| MetodePembayaran | varchar(10)   | Cash, Transfer, QRIS, Debit         |
+| StatusPembayaran | enum          | sukses, proses, gagal               |
+| timestamps       | datetime      |                                     |
 
 ### Tabel `detail_transaksis`
-| Kolom         | Tipe           | Keterangan                   |
-|---------------|----------------|------------------------------|
-| id            | bigint (PK)    | Auto increment               |
-| transaksi_id  | bigint (FK)    | → transaksis.id (CASCADE)    |
-| produk_id     | bigint (FK)    | → produks.id (CASCADE)       |
-| jumlah        | integer        | Jumlah item dibeli           |
-| harga_satuan  | decimal(10,2)  | Harga per unit saat transaksi|
-| subtotal      | decimal(10,2)  | jumlah × harga_satuan        |
-| timestamps    | datetime       |                              |
+
+| Kolom        | Tipe          | Keterangan                    |
+| ------------ | ------------- | ----------------------------- |
+| id           | bigint (PK)   | Auto increment                |
+| transaksi_id | bigint (FK)   | → transaksis.id (CASCADE)     |
+| produk_id    | bigint (FK)   | → produks.id (CASCADE)        |
+| jumlah       | integer       | Jumlah item dibeli            |
+| harga_satuan | decimal(10,2) | Harga per unit saat transaksi |
+| subtotal     | decimal(10,2) | jumlah × harga_satuan         |
+| timestamps   | datetime      |                               |
 
 ### Relasi Antar Tabel
 
@@ -253,6 +262,7 @@ users (standalone, role-based auth)
 ## 🚀 Fitur Aplikasi
 
 ### 1. 📊 Dashboard Analitik
+
 - **Kartu Ringkasan**: Total Modal dan Keuntungan Bersih
 - **Grafik Tren Harian**: Area chart transaksi & revenue (14 hari terakhir)
 - **Produk Paling Laris**: Bar chart horizontal (Top 5)
@@ -263,6 +273,7 @@ users (standalone, role-based auth)
 - **Stok Terendah**: Daftar produk dengan stok paling sedikit
 
 ### 2. 🛒 Point of Sale (Kasir)
+
 - Tampilan grid produk dengan foto, harga, dan stok real-time
 - Pencarian produk secara live (by nama / kategori)
 - Keranjang belanja interaktif dengan penambahan/pengurangan qty
@@ -273,27 +284,32 @@ users (standalone, role-based auth)
 - Pengurangan stok gudang otomatis setelah transaksi
 
 ### 3. 📦 Manajemen Produk
+
 - CRUD lengkap (Create, Read, Update, Delete)
 - Upload foto produk
 - Kategori: Makanan, Minuman, Snack, Bumbu, Sembako, Peralatan, Lainnya
 - Satuan: Pcs, Kg, Liter, Dus, Pack, Botol, Sachet, Box
 
 ### 4. 👥 Manajemen Data Master
+
 - **Karyawan**: Nama, Jabatan, No. Telp, Tanggal Masuk
 - **Pelanggan**: Nama, Alamat, No. Telp, Tanggal Daftar
 - **Pemasok**: Nama, Alamat, No. Telp, Kontak Person
 
 ### 5. 🏬 Manajemen Gudang/Stok
+
 - Pencatatan stok masuk dari pemasok
 - Relasi ke produk dan pemasok
 - Harga beli per unit untuk penghitungan modal
 
 ### 6. 🧾 Transaksi & Detail Transaksi
+
 - Riwayat semua transaksi dengan status pembayaran
 - Detail item per transaksi (produk, jumlah, harga satuan, subtotal)
 - CRUD manual untuk koreksi data
 
 ### 7. 👤 Manajemen User (Superadmin Only)
+
 - CRUD pengguna sistem
 - Pembagian role: `superadmin` dan `admin`
 - Hanya superadmin yang dapat mengakses menu ini
@@ -303,41 +319,46 @@ users (standalone, role-based auth)
 ## 🔀 Routing & Endpoint
 
 ### Route Publik (Tanpa Login)
-| Method | URI       | Aksi                    |
-|--------|-----------|-------------------------|
-| GET    | `/`       | Landing page            |
-| GET    | `/login`  | Halaman login           |
-| POST   | `/login`  | Proses login            |
+
+| Method | URI      | Aksi          |
+| ------ | -------- | ------------- |
+| GET    | `/`      | Landing page  |
+| GET    | `/login` | Halaman login |
+| POST   | `/login` | Proses login  |
 
 ### Route Terproteksi (Memerlukan Login)
-| Method | URI                    | Controller               | Aksi                   |
-|--------|------------------------|--------------------------|------------------------|
-| POST   | `/logout`              | AuthController            | Proses logout          |
-| GET    | `/dashboard`           | DashboardController       | Dashboard analitik     |
-| GET    | `/kasir`               | KasirController           | Halaman POS            |
-| POST   | `/kasir`               | KasirController           | Proses transaksi       |
+
+| Method | URI          | Controller          | Aksi               |
+| ------ | ------------ | ------------------- | ------------------ |
+| POST   | `/logout`    | AuthController      | Proses logout      |
+| GET    | `/dashboard` | DashboardController | Dashboard analitik |
+| GET    | `/kasir`     | KasirController     | Halaman POS        |
+| POST   | `/kasir`     | KasirController     | Proses transaksi   |
 
 ### Resource Routes (CRUD Penuh — `index`, `create`, `store`, `edit`, `update`, `destroy`)
-| URI Prefix          | Controller                 |
-|---------------------|----------------------------|
-| `/pemasok`          | PemasokController          |
-| `/produk`           | ProdukController           |
-| `/pelanggan`        | PelangganController        |
-| `/karyawan`         | KaryawanController         |
-| `/gudang`           | GudangController           |
-| `/transaksi`        | TransaksiController        |
-| `/detail-transaksi` | DetailTransaksiController  |
+
+| URI Prefix          | Controller                |
+| ------------------- | ------------------------- |
+| `/pemasok`          | PemasokController         |
+| `/produk`           | ProdukController          |
+| `/pelanggan`        | PelangganController       |
+| `/karyawan`         | KaryawanController        |
+| `/gudang`           | GudangController          |
+| `/transaksi`        | TransaksiController       |
+| `/detail-transaksi` | DetailTransaksiController |
 
 ### Route Superadmin Only
-| URI Prefix | Controller     | Middleware          |
-|------------|----------------|---------------------|
-| `/users`   | UserController | `auth`, `superadmin`|
+
+| URI Prefix | Controller     | Middleware           |
+| ---------- | -------------- | -------------------- |
+| `/users`   | UserController | `auth`, `superadmin` |
 
 ---
 
 ## 🔐 Autentikasi & Otorisasi
 
 ### Mekanisme Login
+
 - Menggunakan `Auth::attempt()` bawaan Laravel
 - Session-based authentication
 - Middleware `auth` melindungi seluruh halaman CRUD
@@ -345,12 +366,14 @@ users (standalone, role-based auth)
 - **Fitur Register telah dinonaktifkan** — pendaftaran user baru hanya bisa dilakukan oleh Superadmin melalui menu Manajemen User
 
 ### Role-Based Access
-| Role        | Akses                                             |
-|-------------|----------------------------------------------------|
-| `admin`     | Dashboard, Kasir, semua CRUD data master           |
-| `superadmin`| Semua akses admin + Manajemen User (CRUD users)    |
+
+| Role         | Akses                                           |
+| ------------ | ----------------------------------------------- |
+| `admin`      | Dashboard, Kasir, semua CRUD data master        |
+| `superadmin` | Semua akses admin + Manajemen User (CRUD users) |
 
 ### Middleware Kustom
+
 - **`SuperadminMiddleware`**: Memeriksa `auth()->user()->role === 'superadmin'`. Jika bukan, redirect ke dashboard dengan pesan error.
 
 ---
@@ -358,24 +381,26 @@ users (standalone, role-based auth)
 ## 🎨 Desain UI / Tema
 
 ### Admin Light Theme
+
 Aplikasi menggunakan tema terang (light theme) yang bersih dan profesional:
 
-| Elemen                | Warna / Style                            |
-|-----------------------|------------------------------------------|
-| Background Body       | `#f8f9fa` (abu-abu sangat muda)          |
-| Card / Panel          | `#ffffff` (putih murni)                  |
-| Primary Accent        | `#3b82f6` (biru terang)                  |
-| Primary Hover         | `#2563eb` (biru gelap)                   |
-| Teks Utama            | `#1f2937` (charcoal gelap)               |
-| Teks Sekunder         | `#6b7280` (abu-abu medium)               |
-| Border                | `#e5e7eb` (abu-abu tipis)                |
-| Sidebar               | Putih dengan indikator biru transparan   |
-| Tombol Utama          | Solid `#3b82f6` dengan shadow lembut     |
-| Tabel Header          | `#f9fafb` dengan teks uppercase abu-abu  |
-| Form Input Focus      | Ring biru `rgba(59, 130, 246, 0.15)`     |
+| Elemen           | Warna / Style                           |
+| ---------------- | --------------------------------------- |
+| Background Body  | `#f8f9fa` (abu-abu sangat muda)         |
+| Card / Panel     | `#ffffff` (putih murni)                 |
+| Primary Accent   | `#3b82f6` (biru terang)                 |
+| Primary Hover    | `#2563eb` (biru gelap)                  |
+| Teks Utama       | `#1f2937` (charcoal gelap)              |
+| Teks Sekunder    | `#6b7280` (abu-abu medium)              |
+| Border           | `#e5e7eb` (abu-abu tipis)               |
+| Sidebar          | Putih dengan indikator biru transparan  |
+| Tombol Utama     | Solid `#3b82f6` dengan shadow lembut    |
+| Tabel Header     | `#f9fafb` dengan teks uppercase abu-abu |
+| Form Input Focus | Ring biru `rgba(59, 130, 246, 0.15)`    |
 
 ### Library CSS & JS
-- **AdminLTE 4 Beta 3** — Layout sidebar dan admin panel
+
+- **Custom CSS** — Layout sidebar dan admin panel
 - **Bootstrap 5.3** — Grid, form, dan komponen UI
 - **Highcharts** — Grafik dashboard (areaspline, bar, pie, donut)
 - **Select2** — Enhanced dropdown select
@@ -390,4 +415,4 @@ Proyek ini dibuat untuk keperluan akademik — **Tugas Mata Kuliah Pemrograman B
 
 ---
 
-> *Dokumentasi ini di-generate pada 12 Juni 2026.*
+> _Dokumentasi ini di-generate pada 12 Juni 2026._
