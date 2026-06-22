@@ -126,12 +126,12 @@
         .text-white {
             color: #111827 !important;
         }
-        
+
         .btn-outline-light {
             border-color: #cbd5e1;
             color: #4b5563;
         }
-        
+
         .btn-outline-light:hover {
             background: #f1f5f9;
             color: #0f172a;
@@ -168,12 +168,13 @@
                     </p>
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Dashboard real-time</span>
-                        <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Kelola stok & pelanggan</span>
+                        <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Kelola stok &
+                            pelanggan</span>
                         <span class="info-chip"><i class="bi bi-check2-circle text-info"></i> Laporan penjualan</span>
                     </div>
                     <div class="d-flex flex-wrap gap-3">
-                        <a class="btn btn-cta"
-                            href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right me-2"></i>Login Sekarang</a>
+                        <a class="btn btn-cta" href="{{ route('login') }}"><i
+                                class="bi bi-box-arrow-in-right me-2"></i>Login Sekarang</a>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -192,13 +193,14 @@
                             <div class="col-6">
                                 <div class="mini-card p-3">
                                     <small class="text-muted-soft">Total Transaksi</small>
-                                    <h3 class="text-white mb-0 mt-1">120</h3>
+                                    <h3 class="text-white mb-0 mt-1">{{ number_format($totalTransaksi) }}</h3>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mini-card p-3">
                                     <small class="text-muted-soft">Pendapatan</small>
-                                    <h3 class="text-white mb-0 mt-1">Rp 18Jt</h3>
+                                    <h3 class="text-white mb-0 mt-1">Rp
+                                        {{ number_format($totalPendapatan, 0, ',', '.') }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -264,30 +266,57 @@
             </div>
         </section>
 
-        <section class="mt-5 row g-4">
-            <div class="col-md-4">
-                <article class="feature-card p-4 h-100">
-                    <i class="bi bi-graph-up-arrow fs-3 text-primary mb-3"></i>
-                    <h5 class="text-white mb-2">Pantau performa toko</h5>
-                    <p class="text-muted-soft mb-0">Lihat tren penjualan, keuntungan, dan aktivitas harian dengan
-                        tampilan yang mudah dibaca.</p>
-                </article>
+        <section class="mt-5">
+            <p class="section-title mb-3">Statistik Toko</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <article class="feature-card p-4 h-100 text-center">
+                        <i class="bi bi-box-seam fs-1 text-primary mb-3"></i>
+                        <h2 class="text-white fw-bold mb-1">{{ number_format($totalProduk) }}</h2>
+                        <p class="text-muted-soft mb-0">Total Produk</p>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="feature-card p-4 h-100 text-center">
+                        <i class="bi bi-people-fill fs-1 text-primary mb-3"></i>
+                        <h2 class="text-white fw-bold mb-1">{{ number_format($totalPelanggan) }}</h2>
+                        <p class="text-muted-soft mb-0">Pelanggan Terdaftar</p>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="feature-card p-4 h-100 text-center">
+                        <i class="bi bi-person-badge-fill fs-1 text-primary mb-3"></i>
+                        <h2 class="text-white fw-bold mb-1">{{ number_format($totalKaryawan) }}</h2>
+                        <p class="text-muted-soft mb-0">Karyawan Aktif</p>
+                    </article>
+                </div>
             </div>
-            <div class="col-md-4">
-                <article class="feature-card p-4 h-100">
-                    <i class="bi bi-basket2 fs-3 text-primary mb-3"></i>
-                    <h5 class="text-white mb-2">Atur inventaris lebih rapi</h5>
-                    <p class="text-muted-soft mb-0">Stok, kategori, dan produk bisa dikelola secara sistematis tanpa
-                        bingung.</p>
-                </article>
-            </div>
-            <div class="col-md-4">
-                <article class="feature-card p-4 h-100">
-                    <i class="bi bi-shield-check fs-3 text-primary mb-3"></i>
-                    <h5 class="text-white mb-2">Profesional dan aman</h5>
-                    <p class="text-muted-soft mb-0">Antarmuka yang bersih, konsisten, dan siap digunakan untuk bisnis
-                        retail modern.</p>
-                </article>
+        </section>
+
+        <section class="mt-5">
+            <p class="section-title mb-3">Produk Terbaru</p>
+            <div class="row g-4">
+                @foreach ($produkTerbaru as $produk)
+                    <div class="col-md-6 col-xl-3">
+                        <article class="feature-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-center rounded-3 bg-light"
+                                    style="width: 48px; height: 48px; flex-shrink: 0;">
+                                    <i class="bi bi-bag-fill text-primary fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-white mb-0 fw-bold">{{ $produk->NamaProduk }}</h6>
+                                    <small class="text-muted-soft">{{ $produk->KategoriProduk }}</small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-primary">Rp
+                                    {{ number_format($produk->Harga, 0, ',', '.') }}</span>
+                                <span class="badge badge-soft px-2 py-1">Baru</span>
+                            </div>
+                        </article>
+                    </div>
+                @endforeach
             </div>
         </section>
     </main>
