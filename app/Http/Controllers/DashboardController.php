@@ -50,7 +50,7 @@ class DashboardController extends Controller
         FROM transaksis t 
         JOIN karyawans k ON t.karyawan_id = k.id 
         GROUP BY t.karyawan_id, k.NamaKaryawan 
-        ORDER BY total_trx DESC LIMIT 5");
+        ORDER BY total_jual DESC LIMIT 5");
 
         $topProduk = DB::select("
         SELECT p.NamaProduk, SUM(d.jumlah) as total_terjual 
